@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="StockTrading.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Welcome to Stock Trading </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/starter.css" />
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.navbar-nav').find('li a').removeClass('active');
+            var url = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+            $('[href$="' + url + '"]').addClass("active");
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" EnablePartialRendering="true" AsyncPostBackTimeout="10000"></asp:ScriptManager>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo.png" />Stock Trading </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <label class="nav-link available-price">Avail <b>$
+                        <asp:Label Text="0" ID="lblAvailablAmount" runat="server" /></b></label>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="Stocks.aspx">Stocks</a>
+                            </li>
+                           <%-- <li class="nav-item">
+                                <a class="nav-link" href="#">Orders</a>
+                            </li>--%>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Holdings.aspx">Holdings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Transactions.aspx">Transactions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Funds.aspx">Funds</a>
+                            </li>
+                            <li class="nav-item">
+                                <%--<label class="nav-link"><span class="circle">R</span> Ramakrishna</label>--%>
+                                <asp:Label CssClass="nav-link" Text="" ID="lblUserName" runat="server" />
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lnkSignOut" title="Sign out" CssClass="nav-link f-1-2" CausesValidation="false" Text="" runat="server" OnClick="lnkSignOut_Click">
+                                    <i class="bi bi-box-arrow-in-right"></i>
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
